@@ -3,6 +3,9 @@ let gameBoard = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 const selections = Array.from(document.querySelectorAll('.options'));
 
+const btn = document.querySelector('button');
+const winner = document.querySelector('h2');
+
 // WINNING COMBINATIONS
 const winPatterns = [
   [0, 1, 2],
@@ -33,7 +36,6 @@ let players = (function () {
 // function to update the GameBoard
 function updateGameboard(index) {
   if (gameBoard[index]) {
-    console.log('A value exists there');
     return;
   }
   gameBoard[index] = currentPlayer;
@@ -74,6 +76,8 @@ function checkWinner(index) {
         selections.forEach(
           (selection) => (selection.style.pointerEvents = 'none')
         );
+        winner.textContent = `Player 1 has won!`;
+        return;
       }
     }
 
@@ -83,7 +87,19 @@ function checkWinner(index) {
         selections.forEach(
           (selection) => (selection.style.pointerEvents = 'none')
         );
+        winner.textContent = `Player 2 has won!`;
+        return;
       }
     }
   });
 }
+
+btn.onclick = () => {
+  gameBoard = ['', '', '', '', '', '', '', '', ''];
+  currentPlayer = 'X';
+  selections.forEach((selection) => {
+    selection.textContent = '';
+    selection.style.pointerEvents = 'auto';
+    winner.textContent = '';
+  });
+};
