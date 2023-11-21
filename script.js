@@ -86,6 +86,4 @@ function checkWinner(index) {
       }
     }
   });
-  console.log('x', xPatterns);
-  console.log('o', oPatterns);
 }
