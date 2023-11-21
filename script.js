@@ -67,15 +67,23 @@ function checkWinner(index) {
     }
   });
 
-  winPatterns.forEach( ( pattern ) => {
-    // if ( xPatterns.length > 3 || oPatterns.length > 3 ) {
-    //   xPatterns.splice( 0, 1 )
-    //   oPatterns.splice(0, 1);
-    // }
-    if (xPatterns.every((value, index) => value === pattern[index])) {
-      console.log('X is the winner');
-    } else if (pattern.every((value, index) => value === oPatterns[index])) {
-      console.log('O is the winner');
+  winPatterns.forEach((pattern) => {
+    if (xPatterns.length > 2) {
+      let output = pattern.every((value) => xPatterns.includes(value));
+      if (output) {
+        selections.forEach(
+          (selection) => (selection.style.pointerEvents = 'none')
+        );
+      }
+    }
+
+    if (oPatterns.length > 2) {
+      let output = pattern.every((value) => oPatterns.includes(value));
+      if (output) {
+        selections.forEach(
+          (selection) => (selection.style.pointerEvents = 'none')
+        );
+      }
     }
   });
   console.log('x', xPatterns);
